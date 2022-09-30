@@ -46,6 +46,7 @@
 		ADEBD2AA28E702A9000F03A2 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEBD2A928E702A9000F03A2 /* Coordinator.swift */; };
 		ADEBD2AD28E702CB000F03A2 /* ItemDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEBD2AC28E702CB000F03A2 /* ItemDetailCoordinator.swift */; };
 		ADEBD2B028E70378000F03A2 /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEBD2AF28E70378000F03A2 /* ItemDetailViewModel.swift */; };
+		ADEBD2B228E7046B000F03A2 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEBD2B128E7046B000F03A2 /* GradientView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		ADEBD2A928E702A9000F03A2 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		ADEBD2AC28E702CB000F03A2 /* ItemDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailCoordinator.swift; sourceTree = "<group>"; };
 		ADEBD2AF28E70378000F03A2 /* ItemDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewModel.swift; sourceTree = "<group>"; };
+		ADEBD2B128E7046B000F03A2 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				AD328C3528DB87C600FE42C8 /* ScrollableStackView.swift */,
+				ADEBD2B128E7046B000F03A2 /* GradientView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 			files = (
 				AD5BB73428D008D6003D1C16 /* TableCellHandler.swift in Sources */,
 				AD013DAA268517C900FD8D00 /* MVP+Presenter.swift in Sources */,
+				ADEBD2B228E7046B000F03A2 /* GradientView.swift in Sources */,
 				AD5BB71028CFFF1C003D1C16 /* MVP+ViewController.swift in Sources */,
 				AD5BB72D28D0084B003D1C16 /* ReusableIdentifier.swift in Sources */,
 				AD5BB73628D00948003D1C16 /* NotificationObserver+Binder.swift in Sources */,

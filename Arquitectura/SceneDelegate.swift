@@ -4,7 +4,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   var window: UIWindow?
   
-  #warning("Change this value to test in different architectures")
   fileprivate let architecture: Architecture = .mvc
   
   fileprivate enum Architecture {
@@ -18,6 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   ) {
     guard let windowsScene = scene as? UIWindowScene else { return }
     
+    //setupUserDefaults()
     let window = UIWindow(windowScene: windowsScene)
     window.makeKeyAndVisible()
     self.window = window
@@ -33,8 +33,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   func startMVC() {
     let service = MockFetchService()
     let controller = MVCViewController(fetchService: service)
-
+    
     self.addAsRoot(controller)
+    controller.showProduct = { [weak controller] product in
+      guard let controller = controller else { return }
+      guard let navigation = controller.navigationController else { return }
+      
+      ItemDetailCoordinator(navigation: navigation, product: product)
+        .start()
+    }
   }
   
   /* MVP */
@@ -56,14 +63,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     self.addAsRoot(controller)
   }
-
   
   private func addAsRoot(_ controller: UIViewController) {
     let navigation = UINavigationController(rootViewController: controller)
-    
     let navBarAppearance = UINavigationBarAppearance()
     navBarAppearance.configureWithOpaqueBackground()
-    navBarAppearance.backgroundColor = UIColor.primaryColor
+    navBarAppearance.backgroundColor = UIColor.systemYellow
     
     let appearance = UINavigationBar.appearance()
     appearance.standardAppearance = navBarAppearance
@@ -76,11 +81,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     window?.rootViewController = navigation
   }
-}
-
-extension UIColor {
-  
-  static let primaryColor: UIColor = UIColor.yellow
-  
-  
 }

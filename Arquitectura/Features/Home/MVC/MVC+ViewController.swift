@@ -6,6 +6,7 @@ class MVCViewController: UIViewController {
   // MARK: - Attributes
   
   let fetchService: FetchService
+  var showProduct: ((Product) -> Void) = { _ in }
   
   private var items = [GenericTableCellHandler]()
   
@@ -14,7 +15,7 @@ class MVCViewController: UIViewController {
     ProductTableCellHandler.register(in: $0)
   }
   
-  lazy var searchBar: UISearchBar = {
+  private lazy var searchBar: UISearchBar = {
     let searchBar = UISearchBar()
     searchBar.delegate = self
     
@@ -56,6 +57,7 @@ class MVCViewController: UIViewController {
   // MARK: - Private Functions
   
   private func setupView() {
+    view.backgroundColor = .white
     view.addSubview(tableView)
     tableView.pinToEdges(of: view)
     
@@ -77,8 +79,7 @@ class MVCViewController: UIViewController {
   }
   
   private func showDetail(of product: Product) {
-    let controller = ViewControllerDetail()
-    navigationController?.pushViewController(controller, animated: true)
+    showProduct(product)
   }
   
   // MARK: - Service

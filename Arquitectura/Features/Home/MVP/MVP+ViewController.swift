@@ -69,8 +69,10 @@ class MVPViewController: UIViewController {
   }
   
   private func showDetail(of product: Product) {
-    let controller = ViewControllerDetail()
-    navigationController?.pushViewController(controller, animated: true)
+    guard let navigation = navigationController else { return }
+    
+    ItemDetailCoordinator(navigation: navigation, product: product)
+      .start()
   }
 }
 

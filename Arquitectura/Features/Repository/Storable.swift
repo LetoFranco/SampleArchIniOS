@@ -12,3 +12,10 @@ protocol StorableCallback: FetchableCallback {
   
   func store(_ model: Model, callback: @escaping (Result<Model, Error>) -> Void)
 }
+
+
+protocol AsyncStorable: AsyncFetchable {
+  associatedtype Model
+  
+  func store(_ model: Model) async throws -> Model
+}

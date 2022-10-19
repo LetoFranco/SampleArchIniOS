@@ -12,3 +12,8 @@ protocol FetchableCallback {
   
   func fetch(_ callback: @escaping (Result<Model, Error>) -> Void)
 }
+
+protocol AsyncFetchable {
+  associatedtype Model
+  func fetch() async throws -> Model
+}

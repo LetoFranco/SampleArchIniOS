@@ -35,3 +35,22 @@ where LocalStorage.Model == Model, RemoteStorage.Model == Model {
     }
   }
 }
+
+struct AsyncRepository<LocalStorage: AsyncStorable, RemoteStorage: AsyncStorable, Model: Codable>
+where LocalStorage.Model == Model, RemoteStorage.Model == Model {
+  
+  let localStorage: LocalStorage
+  let remoteStorage: RemoteStorage
+  
+  func sync() async throws -> Model {
+    try await localStorage.store(try await remoteStorage.fetch())
+  }
+  
+  func load() async throws -> Model {
+    do {
+      return try await localStorage.fetch()
+    } catch {
+      return try await sync()
+    }
+  }
+}

@@ -1,6 +1,31 @@
 import Foundation
 import UIKit
 
+
+class ViewModel {
+  let items = DynamicValue([ItemViewModel]())
+  
+  func fetch() {
+    DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+      DispatchQueue.main.async {
+        let models = ["Titulo1", "Titulo2", "Titulo3"]
+        // self.items.value = models.map(ItemViewModel.init)
+        self.items.value = models.map { ItemViewModel(model: $0) }
+      }
+    }
+    
+  }
+}
+
+struct ItemViewModel {
+  let title: String
+  
+  init(model: String) {
+    self.title = model
+  }
+}
+
+
 class MVVMViewController: UIViewController {
   
   // MARK: - Attributes

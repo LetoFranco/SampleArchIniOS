@@ -50,6 +50,35 @@ extension UIView {
     ].activate()
   }
   
+  func addAndSetConstraints(with axis: NSLayoutConstraint.Axis, for views: [UIView]) {
+    guard views.count > 0 else { return }
+
+    var previousView: UIView? = nil
+    for view in views {
+      addSubview(view)
+      switch axis {
+      case .vertical:
+        view.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        view.topAnchor.constraint(equalTo: previousView?.bottomAnchor ?? safeTop).isActive = true
+      case .horizontal:
+        view.topAnchor.constraint(equalTo: safeTop).isActive = true
+        view.bottomAnchor.constraint(equalTo: safeBottom).isActive = true
+        view.leadingAnchor.constraint(equalTo: previousView?.trailingAnchor ?? leadingAnchor).isActive = true
+      @unknown default: break
+      }
+      previousView = view
+    }
+    
+    switch axis {
+    case .vertical:
+      previousView?.bottomAnchor.constraint(equalTo: safeBottom).isActive = true
+    case .horizontal:
+      previousView?.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+    @unknown default: break
+    }
+  }
+  
   @discardableResult
   func height(equalTo const: CGFloat) -> Self {
     heightAnchor.constraint(equalToConstant: const).activate()
